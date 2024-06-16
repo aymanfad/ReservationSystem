@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 import java.util.Collection;
 
 @Entity
+@Table(name = "\"user\"")
 @Data @NoArgsConstructor @AllArgsConstructor
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private Role role;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
     private Collection<Reservation> reservations;
 
 }
