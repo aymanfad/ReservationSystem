@@ -1,0 +1,1 @@
+This is a Spring Boot Web Application to manage and schedule appointments between providers and customers. 
