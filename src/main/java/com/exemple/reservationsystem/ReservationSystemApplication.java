@@ -5,6 +5,7 @@ import com.exemple.reservationsystem.entities.Role;
 import com.exemple.reservationsystem.entities.User;
 import com.exemple.reservationsystem.repositories.ReservationRepository;
 import com.exemple.reservationsystem.repositories.UserRepository;
+import com.exemple.reservationsystem.service.ReservationServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +25,8 @@ public class ReservationSystemApplication {
     }
 
     @Bean
-    CommandLineRunner start(UserRepository userRepository, ReservationRepository reservationRepository){
+    CommandLineRunner start(UserRepository userRepository, ReservationRepository reservationRepository,
+                            ReservationServiceImpl reservationService){
         return args -> {
             Stream.of("joe", "joey", "joanne")
                     .forEach(name -> {
@@ -47,7 +49,8 @@ public class ReservationSystemApplication {
             Reservation reservation = new Reservation();
             reservation.setUser(user1);
             reservation.setDate(new Date());
-            reservationRepository.save(reservation);
+            reservationService.updateReservation(reservation);
+            //reservationService.deleteReservation(reservation);
 
         };
     }
